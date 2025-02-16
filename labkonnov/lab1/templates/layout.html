@@ -8,14 +8,17 @@
         <link rel="stylesheet" href="{% static 'css/style.css' %}" />
         <script src="{% static 'js.js' %}" defer></script>
         <style>
-            .log{
+            .logg{
             
-                background-color: #e3f5f3;
+                background-color: #52daad;
                 border-radius: 10px;
-                border: 2px solid rgb(255, 4, 46);
+                border: 2px solid rgb(8, 100, 50);
                 width: 100px;
                 height: 30px;
                 margin-top: 2px;
+            }
+            .logg:hover {
+                background-color: rgb(154, 231, 186);
             }
         </style>
     </head>
@@ -26,20 +29,24 @@
             <li><a href="{% url 'posts:list' %}"> Посты</a></li>
             <li><a href="{% url 'communities:list' %}">Сообщества</a></li>
             {% if user.is_authenticated %}
-            {% else %}
-                <li><a href="{% url 'users:register' %}">
-                    Зарегистрироваться
-                </a></li>
-                <li><a href="{% url 'users:login' %}">
-                    Войти
-                </a></li>
-            {% endif %}
-            
-            <form class="logout" action="{% url 'users:logout' %}" method="post">
-                {% csrf_token %}
-                <button class="log" title="User Logout">Выйти</button>
-            </form>
-            <main>{% block content %} {% endblock %}</main>
+                <li><a href="{% url 'posts:new-post' %}">Новый пост</a></li>
+
+                <form class="logout" action="{% url 'users:logout' %}" method="post">
+                    {% csrf_token %}
+                    <button class="logg" title="User Logout">Выйти</button>
+                </form>
+                {% else %}
+                    <li><a href="{% url 'users:register' %}">
+                        Зарегистрироваться
+                    </a></li>
+                    <li><a href="{% url 'users:login' %}">
+                        Войти
+                    </a></li>
+                {% endif %}
+                
+            </ul>
+        </nav>
+        <main>{% block content %} {% endblock %}</main>
         </div>
     </body>
 </html>

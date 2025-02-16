@@ -27,7 +27,7 @@ h1 {
 }
 .but {
     background-color: rgb(28, 45, 59);
-    height: 150px;
+    height: 130px;
     position: -webkit-sticky;
     position: sticky;
     top: 0;
